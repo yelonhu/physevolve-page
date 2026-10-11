@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PhysEvolve trains vision-language models for causal physical reasoning through executable worlds and simulation-verified self-play.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="PhysEvolve: Verifier-Grounded Self-Evolution for Physical Reasoning with Executable Worlds">
+  <meta property="og:description" content="Learning causal physical reasoning from executable worlds and exact simulator feedback.">
+  <title>PhysEvolve — Physical Reasoning with Executable Worlds</title>
+  <link rel="preload" href="assets/fonts/montserrat-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#scenes">Skip to content</a>
+  <main>
+    <header class="hero container">
+      <h1><span class="project-name">PhysEvolve</span>: Verifier-Grounded Self-Evolution for Physical Reasoning with Executable Worlds</h1>
+      <p class="authors"><a href="https://yelonhu.github.io/" target="_blank" rel="noopener">Jinyuan Hu</a><span>Yilei Jiang</span><span>Chen Tang</span><span>Minghong Cai</span><span>Xinran Liu</span><span>Xiangyu Yue</span></p>
+      <div class="affiliation"><a href="https://www.cuhk.edu.hk/"><img src="assets/cuhk-crest.svg" width="125" height="100" alt=""><span>Multimedia Laboratory,<br class="affiliation-break"> The Chinese University of Hong Kong</span></a></div>
+      <p class="venue">Under review at ICLR 2027</p>
+      <nav class="paper-links" aria-label="Research links">
+        <a class="pill" href="assets/PhysEvolve.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg>Paper</a>
+        <a class="pill" href="https://github.com/yelonhu/PhysEvolve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg>Code</a>
+      </nav>
+    </header>
+
+    <section class="scenes container" id="scenes" aria-labelledby="scenes-title">
+      <div class="section-intro"><h2 id="scenes-title">Executable worlds</h2></div>
+      <div class="video-grid">
+        <figure class="scene">
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/throwing-poster.jpg" aria-label="Throwing reference scene: colored balls deflected by obstacles"><source src="assets/throwing.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/throwing.mp4">Download the throwing video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/throwing.mp4">Open video</a></p></div>
+          <figcaption><h3>Throwing</h3><p>Ball trajectories through removable obstacles.</p></figcaption>
+        </figure>
+        <figure class="scene">
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/collision-poster.jpg" aria-label="Collision reference scene: a hinged striker transfers motion through multiple objects"><source src="assets/collision.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/collision.mp4">Download the collision video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/collision.mp4">Open video</a></p></div>
+          <figcaption><h3>Collision</h3><p>Motion transfer through a chain of contacts.</p></figcaption>
+        </figure>
+        <figure class="scene">
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/motion-poster.jpg" aria-label="Motion reference scene: a ball rolls down a ramp and interacts with a slider and another ball"><source src="assets/motion.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/motion.mp4">Download the motion video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/motion.mp4">Open video</a></p></div>
+          <figcaption><h3>Motion</h3><p>Rolling, sliding, and friction-dependent motion.</p></figcaption>
+        </figure>
+      </div>
+      <p class="scene-note">Reference scenes · Original speed</p>
+    </section>
+
+    <section class="abstract text-container" aria-labelledby="abstract-title">
+      <h2 id="abstract-title">Abstract</h2>
+      <p>Physical reasoning underpins how embodied systems understand and act in the physical world, yet vision-language models (VLMs) remain unreliable on questions about dynamics and physical causality. Progress is critically constrained by the scarcity of grounded counterfactual training data, as observational videos capture only the factual trajectory that occurred. The self-evolving paradigm offers a route beyond fixed datasets by enabling models to construct their own training problems. Extending this paradigm to physics, however, requires an external source of truth that can both validate model-proposed environments and verify alternative physical outcomes under intervention. We introduce PhysEvolve, a verifier-grounded self-evolving framework that trains VLMs for causal physical reasoning from model-proposed executable worlds and simulation-authored tasks. At each round, a shared VLM proposes executable world programs and evidence schemas; a deterministic physics engine freezes each valid world, simulates matched baseline and body-elided counterfactual branches, and synthesizes discrete, answer-bound visual tasks. Exact verifier feedback from task solving updates both the shared policy via GRPO and an adaptive curriculum over physical intents. Starting from Qwen3-VL-8B-Instruct, PhysEvolve achieves targeted gains across PhysBench, CausalPhys, and ContPhy without human intervention data, improving PhysBench Throwing by 8.8 points and ContPhy Counterfactual Removal and Goal-Pit by 7.4 and 24.4 points. These gains concentrate on interaction-sensitive and altered-world questions, demonstrating zero-shot transfer of causal principles to unseen complex dynamics (cloth, fluid, soft bodies) and real-world video.</p>
+    </section>
+
+    <section class="method container" aria-labelledby="method-title">
+      <h2 id="method-title">Method</h2>
+      <figure>
+        <a class="method-link" href="assets/physevolve_framework_overview.svg" target="_blank" rel="noopener" aria-label="Open the full-resolution PhysEvolve method diagram"><img src="assets/physevolve_framework_overview.svg" width="1650" height="880" loading="lazy" alt="PhysEvolve framework: a shared model proposes worlds; a deterministic executor verifies them and simulates baseline and removal branches; exact solver feedback updates the policy and curriculum."></a>
+        <figcaption class="method-caption">A shared policy proposes executable worlds and solves simulation-authored tasks. The fixed executor alone determines physical outcomes and correct answers, while exact feedback updates the policy and curriculum.</figcaption>
+      </figure>
+    </section>
+
+    <!-- RESULTS:START -->
+    <section class="results container" aria-labelledby="results-title">
+      <div class="section-intro"><h2 id="results-title">Results</h2><p>Targeted improvements in physical and counterfactual reasoning.</p></div>
+      <div class="chart-legend" aria-label="Chart legend"><span><i class="base-key"></i>Base</span><span><i class="ours-key"></i>PhysEvolve</span></div>
+      <div class="results-grid">
+        <figure class="result-panel">
+          <figcaption><span class="benchmark-name">PhysBench</span><h3>Throwing</h3><p class="result-gain">+8.78<span> pp</span></p></figcaption>
+          <img src="assets/result-throwing.svg" width="320" height="155" loading="lazy" alt="PhysBench Throwing: Base 46.10%, PhysEvolve 54.88%, an increase of 8.78 percentage points.">
+          <p class="result-sample">Accuracy (%) · n = 410</p>
+        </figure>
+        <figure class="result-panel">
+          <figcaption><span class="benchmark-name">ContPhy</span><h3>Counterfactual Removal</h3><p class="result-gain">+7.38<span> pp</span></p></figcaption>
+          <img src="assets/result-counterfactual-removal.svg" width="320" height="155" loading="lazy" alt="ContPhy Counterfactual Removal: Base 44.26%, PhysEvolve 51.64%, an increase of 7.38 percentage points.">
+          <p class="result-sample">Accuracy (%) · n = 122</p>
+        </figure>
+        <figure class="result-panel">
+          <figcaption><span class="benchmark-name">ContPhy</span><h3>Goal-Pit</h3><p class="result-gain">+24.44<span> pp</span></p></figcaption>
+          <img src="assets/result-goal-pit.svg" width="320" height="155" loading="lazy" alt="ContPhy Goal-Pit: Base 20.00%, PhysEvolve 44.44%, an increase of 24.44 percentage points.">
+          <p class="result-sample">Accuracy (%) · n = 90</p>
+        </figure>
+      </div>
+      <div class="overall-results">
+        <h3>Overall benchmark accuracy</h3>
+        <div class="table-scroll"><table><caption class="sr-only">Overall accuracy in percent. Improvements are percentage points relative to Base.</caption><thead><tr><th scope="col">Benchmark</th><th scope="col">Base</th><th scope="col">PhysEvolve</th><th scope="col">Δ (pp)</th></tr></thead><tbody><tr><th scope="row">PhysBench</th><td>52.92</td><td class="ours">53.47</td><td class="delta">+0.55</td></tr><tr><th scope="row">CausalPhys</th><td>53.94</td><td class="ours">54.50</td><td class="delta">+0.56</td></tr><tr><th scope="row">ContPhy</th><td>37.08</td><td class="ours">39.54</td><td class="delta">+2.46</td></tr></tbody></table></div>
+      </div>
+      <p class="results-note">Matched Qwen3-VL-8B-Instruct comparison at step 100; one training run per configuration. The charts show selected task subsets; the table reports overall accuracy. <a href="assets/PhysEvolve.pdf#page=8">Paper, Table 1</a> · <a href="assets/results.json">Data</a></p>
+    </section>
+    <!-- RESULTS:END -->
+
+    <section class="citation text-container" aria-labelledby="bibtex-title">
+      <div class="citation-heading"><h2 id="bibtex-title">BibTeX</h2><button class="copy-button" type="button" id="copy-bibtex">Copy</button></div>
+      <pre tabindex="0" aria-label="BibTeX citation"><code id="bibtex">@misc{hu2026physevolve,
+  title  = {PhysEvolve: Verifier-Grounded Self-Evolution for Physical Reasoning
+            with Executable Worlds},
+  author = {Hu, Jinyuan and Jiang, Yilei and Tang, Chen and Cai, Minghong
+            and Liu, Xinran and Yue, Xiangyu},
+  year   = {2026},
+  note   = {Under review at ICLR 2027}
+}</code></pre>
+      <p id="copy-status" class="copy-status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="container"><span>PhysEvolve</span><span>Layout inspired by <a href="https://viral-humanoid.github.io/">VIRAL</a>, <a href="https://hover-versatile-humanoid.github.io/">HOVER</a> and <a href="https://sim2reason.github.io/">Sim2Reason</a>.</span></footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "base_model": "Qwen3-VL-8B-Instruct",
+  "checkpoint_step": 100,
+  "training_runs_per_configuration": 1,
+  "accuracy_unit": "%",
+  "difference_unit": "percentage points",
+  "source": "PhysEvolve.pdf, Table 1 and Appendix G; research README exact values",
+  "selected": [
+    {"benchmark":"PhysBench","task":"Throwing","base":46.10,"physevolve":54.88,"delta":8.78,"n":410},
+    {"benchmark":"ContPhy","task":"Counterfactual Removal","base":44.26,"physevolve":51.64,"delta":7.38,"n":122},
+    {"benchmark":"ContPhy","task":"Goal-Pit","base":20.00,"physevolve":44.44,"delta":24.44,"n":90}
+  ],
+  "overall": [
+    {"benchmark":"PhysBench","base":52.92,"physevolve":53.47,"delta":0.55},
+    {"benchmark":"CausalPhys","base":53.94,"physevolve":54.50,"delta":0.56},
+    {"benchmark":"ContPhy","base":37.08,"physevolve":39.54,"delta":2.46}
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "family": "Montserrat",
+    "weight": "500",
+    "url": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2",
+    "file": "montserrat-500.woff2"
+  },
+  {
+    "family": "Montserrat",
+    "weight": "600",
+    "url": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2",
+    "file": "montserrat-600.woff2"
+  },
+  {
+    "family": "Montserrat",
+    "weight": "700",
+    "url": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2",
+    "file": "montserrat-700.woff2"
+  },
+  {
+    "family": "Noto Sans",
+    "weight": "400",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0bIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjc5a7du3mhPy0.woff2",
+    "file": "noto-sans-400.woff2"
+  },
+  {
+    "family": "Noto Sans",
+    "weight": "500",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0bIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjc5a7du3mhPy0.woff2",
+    "file": "noto-sans-500.woff2"
+  },
+  {
+    "family": "Noto Sans",
+    "weight": "600",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0bIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjc5a7du3mhPy0.woff2",
+    "file": "noto-sans-600.woff2"
+  }
+]
