@@ -31,7 +31,6 @@ h1 { max-width: 1120px; margin: 0 auto; font-size: 44px; font-weight: 600; lette
 .affiliation a:hover span { color: var(--accent); }
 .affiliation-break { display: none; }
 .affiliation img { display: block; flex: 0 0 auto; width: 38px; height: auto; }
-.venue { margin-top: 13px; font-size: 12px; color: var(--muted); }
 .paper-links { display: flex; justify-content: center; gap: 10px; margin-top: 19px; }
 .pill { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 999px; background: #343437; color: white; text-decoration: none; padding: 8px 23px; min-height: 43px; font-size: 15px; font-weight: 500; transition: background .15s; }
 .pill:hover { background: #505055; }
@@ -109,7 +108,6 @@ footer > span:first-child { font-weight: 600; }
   .affiliation a { font-size: 13px; gap: 8px; }
   .affiliation img { width: 32px; }
   .affiliation-break { display: inline; }
-  .venue { font-size: 11px; margin-top: 12px; }
   .paper-links { margin-top: 17px; }
   .video-grid, .results-grid { grid-template-columns: 1fr; max-width: 500px; margin-inline: auto; gap: 24px; }
   .results-grid { gap: 14px; }
