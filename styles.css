@@ -40,7 +40,7 @@ h3 { font-size: 17px; font-weight: 600; letter-spacing: -.3px; }
 .section-intro { margin-bottom: 23px; text-align: center; }
 .section-intro p { font-size: 14px; color: var(--muted); margin-top: 6px; }
 .video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.video-wrap { position: relative; aspect-ratio: 16 / 9; border-radius: 9px; overflow: hidden; background: #737373; border: 1px solid #0000000c; }
+.video-wrap { position: relative; aspect-ratio: 16 / 9; border-radius: 9px; overflow: hidden; background: #f7f7f6; border: 1px solid #0000000c; }
 .video-wrap video { display: block; width: 100%; height: 100%; object-fit: contain; }
 .video-error { position: absolute; bottom: 0; left: 0; right: 0; background: white; padding: 10px; font-size: 13px; }
 .scene figcaption { padding: 12px 1px 0; }

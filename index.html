@@ -7,6 +7,11 @@
   <meta name="theme-color" content="#ffffff">
   <meta property="og:title" content="PhysEvolve: Verifier-Grounded Self-Evolution for Physical Reasoning with Executable Worlds">
   <meta property="og:description" content="Learning causal physical reasoning from executable worlds and exact simulator feedback.">
+  <meta property="og:url" content="https://yelonhu.github.io/physevolve-page/">
+  <meta property="og:image" content="https://yelonhu.github.io/physevolve-page/assets/physevolve-preview-poster.jpg">
+  <meta property="og:image:width" content="960">
+  <meta property="og:image:height" content="540">
+  <meta name="twitter:card" content="summary_large_image">
   <title>PhysEvolve — Physical Reasoning with Executable Worlds</title>
   <link rel="preload" href="assets/fonts/montserrat-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -21,7 +26,7 @@
       <p class="authors"><a href="https://yelonhu.github.io/" target="_blank" rel="noopener">Jinyuan Hu</a><span>Yilei Jiang</span><span>Chen Tang</span><span>Minghong Cai</span><span>Xinran Liu</span><span>Xiangyu Yue</span></p>
       <div class="affiliation"><a href="https://www.cuhk.edu.hk/"><img src="assets/cuhk-crest.svg" width="125" height="100" alt=""><span>Multimedia Laboratory,<br class="affiliation-break"> The Chinese University of Hong Kong</span></a></div>
       <nav class="paper-links" aria-label="Research links">
-        <span class="pill" aria-label="Paper: arXiv coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg>arXiv coming soon</span>
+        <a class="pill" href="https://arxiv.org/abs/2610.34921" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg>arXiv</a>
         <a class="pill" href="https://github.com/yelonhu/PhysEvolve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg>Code</a>
       </nav>
     </header>
@@ -30,15 +35,15 @@
       <div class="section-intro"><h2 id="scenes-title">Executable worlds</h2></div>
       <div class="video-grid">
         <figure class="scene">
-          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/throwing-poster.jpg" aria-label="Throwing reference scene: colored balls deflected by obstacles"><source src="assets/throwing.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/throwing.mp4">Download the throwing video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/throwing.mp4">Open video</a></p></div>
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/throwing-poster.jpg?v=20261027" aria-label="Throwing reference scene: colored balls deflected by obstacles"><source src="assets/throwing.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/throwing.mp4?v=20261027">Download the throwing video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/throwing.mp4?v=20261027">Open video</a></p></div>
           <figcaption><h3>Throwing</h3><p>Ball trajectories through removable obstacles.</p></figcaption>
         </figure>
         <figure class="scene">
-          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/collision-poster.jpg" aria-label="Collision reference scene: a hinged striker transfers motion through multiple objects"><source src="assets/collision.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/collision.mp4">Download the collision video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/collision.mp4">Open video</a></p></div>
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/collision-poster.jpg?v=20261027" aria-label="Collision reference scene: a hinged striker transfers motion through multiple objects"><source src="assets/collision.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/collision.mp4?v=20261027">Download the collision video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/collision.mp4?v=20261027">Open video</a></p></div>
           <figcaption><h3>Collision</h3><p>Motion transfer through a chain of contacts.</p></figcaption>
         </figure>
         <figure class="scene">
-          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/motion-poster.jpg" aria-label="Motion reference scene: a ball rolls down a ramp and interacts with a slider and another ball"><source src="assets/motion.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/motion.mp4">Download the motion video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/motion.mp4">Open video</a></p></div>
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/motion-poster.jpg?v=20261027" aria-label="Motion reference scene: a ball rolls down a ramp and interacts with a slider and another ball"><source src="assets/motion.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/motion.mp4?v=20261027">Download the motion video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/motion.mp4?v=20261027">Open video</a></p></div>
           <figcaption><h3>Motion</h3><p>Rolling, sliding, and friction-dependent motion.</p></figcaption>
         </figure>
       </div>
@@ -90,11 +95,14 @@
     <section class="citation text-container" aria-labelledby="bibtex-title">
       <div class="citation-heading"><h2 id="bibtex-title">BibTeX</h2><button class="copy-button" type="button" id="copy-bibtex">Copy</button></div>
       <pre tabindex="0" aria-label="BibTeX citation"><code id="bibtex">@misc{hu2026physevolve,
-  title  = {PhysEvolve: Verifier-Grounded Self-Evolution for Physical Reasoning
-            with Executable Worlds},
-  author = {Hu, Jinyuan and Jiang, Yilei and Tang, Chen and Cai, Minghong
-            and Liu, Xinran and Yue, Xiangyu},
-  year   = {2026}
+  title         = {PhysEvolve: Verifier-Grounded Self-Evolution for Physical
+                   Reasoning with Executable Worlds},
+  author        = {Hu, Jinyuan and Jiang, Yilei and Tang, Chen and Cai, Minghong
+                   and Liu, Xinran and Yue, Xiangyu},
+  year          = {2026},
+  eprint        = {2610.34921},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI}
 }</code></pre>
       <p id="copy-status" class="copy-status" aria-live="polite"></p>
     </section>
