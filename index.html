@@ -3,23 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="PhysEvolve trains vision-language models for causal physical reasoning through executable worlds and simulation-verified self-play.">
+  <meta name="description" content="PhysEvolve trains vision-language models for causal physical reasoning: the model writes executable worlds, and a simulator runs each world and its edited copies to author questions with exact answers.">
   <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://yelonhu.github.io/physevolve-page/">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="PhysEvolve: Verifier-Grounded Self-Evolution for Physical Reasoning with Executable Worlds">
-  <meta property="og:description" content="Learning causal physical reasoning from executable worlds and exact simulator feedback.">
+  <meta property="og:description" content="A VLM writes its own physical worlds; a simulator runs each world and its edited copies to author questions with exact answers.">
   <meta property="og:url" content="https://yelonhu.github.io/physevolve-page/">
-  <meta property="og:image" content="https://yelonhu.github.io/physevolve-page/assets/physevolve-preview-poster.jpg">
-  <meta property="og:image:width" content="960">
-  <meta property="og:image:height" content="540">
+  <meta property="og:image" content="https://yelonhu.github.io/physevolve-page/assets/share-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PhysEvolve: the same simulated world run as is and with the black wall removed; the orange ball lands in different pits.">
   <meta name="twitter:card" content="summary_large_image">
   <title>PhysEvolve — Physical Reasoning with Executable Worlds</title>
   <link rel="preload" href="assets/fonts/montserrat-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261028b">
+  <script src="script.js?v=20261028" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#scenes">Skip to content</a>
+  <a class="skip-link" href="#counterfactual">Skip to content</a>
   <main>
     <header class="hero container">
       <h1><span class="project-name">PhysEvolve</span>: Verifier-Grounded Self-Evolution for Physical Reasoning with Executable Worlds</h1>
@@ -27,27 +30,43 @@
       <div class="affiliation"><a href="https://www.cuhk.edu.hk/"><img src="assets/cuhk-crest.svg" width="125" height="100" alt=""><span>Multimedia Laboratory,<br class="affiliation-break"> The Chinese University of Hong Kong</span></a></div>
       <nav class="paper-links" aria-label="Research links">
         <a class="pill" href="https://arxiv.org/abs/2610.34921" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg>arXiv</a>
+        <a class="pill" href="https://huggingface.co/papers/2610.34921" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M8.2 14.2a4.6 4.6 0 0 0 7.6 0M9 9.6v.01M15 9.6v.01"/></svg>Hugging Face</a>
         <a class="pill" href="https://github.com/yelonhu/PhysEvolve" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg>Code</a>
+        <a class="pill" href="https://huggingface.co/YelonLFT/physevolve-v7i-0851-step100" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6 20.4 7.3v9.4L12 21.4l-8.4-4.7V7.3zM3.6 7.3 12 12l8.4-4.7M12 12v9.4"/></svg>Model</a>
       </nav>
+      <p class="tldr">PhysEvolve lets a vision-language model write its own physical worlds. A simulator runs each world and its edited copies, and turns where they diverge into questions with exact answers.</p>
     </header>
 
-    <section class="scenes container" id="scenes" aria-labelledby="scenes-title">
-      <div class="section-intro"><h2 id="scenes-title">Executable worlds</h2></div>
-      <div class="video-grid">
-        <figure class="scene">
-          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/throwing-poster.jpg?v=20261027" aria-label="Throwing reference scene: colored balls deflected by obstacles"><source src="assets/throwing.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/throwing.mp4?v=20261027">Download the throwing video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/throwing.mp4?v=20261027">Open video</a></p></div>
-          <figcaption><h3>Throwing</h3><p>Ball trajectories through removable obstacles.</p></figcaption>
+    <section class="counterfactual container" id="counterfactual" aria-labelledby="cf-title" data-cf>
+      <div class="section-intro"><h2 id="cf-title">One world, edited and run again</h2><p>The executor freezes a world, removes bodies, and replays it from the same initial state.</p></div>
+      <div class="cf-stage">
+        <figure class="cf-run">
+          <div class="video-wrap"><span class="run-tag">Original</span><video data-run="original" muted loop playsinline preload="metadata" poster="assets/cf/original-poster.jpg?v=20261027b" aria-label="Original Throwing run: the orange ball lands in the left pit."><source src="assets/cf/original.mp4?v=20261027b" type="video/mp4"></video></div>
+          <figcaption><span class="ball-dot" aria-hidden="true"></span><span>Orange ball lands in the <strong>left pit</strong>.</span></figcaption>
         </figure>
-        <figure class="scene">
-          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/collision-poster.jpg?v=20261027" aria-label="Collision reference scene: a hinged striker transfers motion through multiple objects"><source src="assets/collision.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/collision.mp4?v=20261027">Download the collision video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/collision.mp4?v=20261027">Open video</a></p></div>
-          <figcaption><h3>Collision</h3><p>Motion transfer through a chain of contacts.</p></figcaption>
-        </figure>
-        <figure class="scene">
-          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/motion-poster.jpg?v=20261027" aria-label="Motion reference scene: a ball rolls down a ramp and interacts with a slider and another ball"><source src="assets/motion.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/motion.mp4?v=20261027">Download the motion video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/motion.mp4?v=20261027">Open video</a></p></div>
-          <figcaption><h3>Motion</h3><p>Rolling, sliding, and friction-dependent motion.</p></figcaption>
+        <figure class="cf-run">
+          <div class="video-wrap">
+            <span class="run-tag is-edit" data-cf-tag>Black wall removed</span>
+            <video class="is-active" data-run="edit" data-branch="remove-black" muted loop playsinline preload="metadata" poster="assets/cf/remove-black-poster.jpg?v=20261027b" aria-label="Edited run without the black wall: the orange ball lands in the middle pit."><source src="assets/cf/remove-black.mp4?v=20261027b" type="video/mp4"></video>
+            <video data-run="edit" data-branch="remove-orange" muted loop playsinline preload="none" poster="assets/cf/remove-orange-poster.jpg?v=20261027b" aria-label="Edited run without the orange wall: the orange ball lands in the left pit."><source src="assets/cf/remove-orange.mp4?v=20261027b" type="video/mp4"></video>
+            <video data-run="edit" data-branch="remove-both" muted loop playsinline preload="none" poster="assets/cf/remove-both-poster.jpg?v=20261027b" aria-label="Edited run without both walls: the orange ball misses every pit."><source src="assets/cf/remove-both.mp4?v=20261027b" type="video/mp4"></video>
+            <button class="cf-toggle" type="button" data-action="pause" aria-label="Pause both runs"></button>
+          </div>
+          <figcaption><span class="ball-dot" aria-hidden="true"></span><span data-cf-caption>Orange ball lands in the <strong>middle pit</strong>.</span></figcaption>
         </figure>
       </div>
-      <p class="scene-note">Reference scenes · Original speed</p>
+      <div class="task-card">
+        <div class="task-head"><span>Task generated by the executor · Inverse intervention</span><span class="task-hint">Choose an option to run it</span></div>
+        <p class="task-question">What can we do to make the orange ball drop into the middle pit?</p>
+        <div class="task-options">
+          <button class="task-option is-answer" type="button" aria-pressed="true" data-branch="remove-black" data-tag="Black wall removed" data-lead="Orange ball lands in the " data-result="middle pit"><span class="opt-letter">A</span><span class="opt-text">Remove the black floating wall and other balls</span><span class="opt-result">Middle pit<svg viewBox="0 0 16 16" aria-label="correct"><path d="m3.5 8.4 3 3 6-6.8"/></svg></span></button>
+          <button class="task-option" type="button" aria-pressed="false" data-branch="remove-orange" data-tag="Orange wall removed" data-lead="Orange ball lands in the " data-result="left pit"><span class="opt-letter">B</span><span class="opt-text">Remove the orange floating wall and other balls</span><span class="opt-result">Left pit</span></button>
+          <div class="task-option is-static"><span class="opt-letter">C</span><span class="opt-text">None of the above</span><span class="opt-result"></span></div>
+          <button class="task-option" type="button" aria-pressed="false" data-branch="remove-both" data-tag="Both walls removed" data-lead="Orange ball " data-result="misses every pit"><span class="opt-letter">D</span><span class="opt-text">Remove both floating walls and other balls</span><span class="opt-result">No pit</span></button>
+        </div>
+        <p class="task-foot">The answer, A, comes from running all three edits. No one labels the question; the simulator alone decides where the ball lands.</p>
+      </div>
+      <p class="scene-note">Same program, seed and camera · Each edit also removes the green and blue balls · Original speed</p>
     </section>
 
     <section class="abstract text-container" aria-labelledby="abstract-title">
@@ -55,17 +74,57 @@
       <p>Physical reasoning underpins how embodied systems understand and act in the physical world, yet vision-language models (VLMs) remain unreliable on questions about dynamics and physical causality. Progress is critically constrained by the scarcity of grounded counterfactual training data, as observational videos capture only the factual trajectory that occurred. The self-evolving paradigm offers a route beyond fixed datasets by enabling models to construct their own training problems. Extending this paradigm to physics, however, requires an external source of truth that can both validate model-proposed environments and verify alternative physical outcomes under intervention. We introduce PhysEvolve, a verifier-grounded self-evolving framework that trains VLMs for causal physical reasoning from model-proposed executable worlds and simulation-authored tasks. At each round, a shared VLM proposes executable world programs and evidence schemas; a deterministic physics engine freezes each valid world, simulates matched baseline and body-elided counterfactual branches, and synthesizes discrete, answer-bound visual tasks. Exact verifier feedback from task solving updates both the shared policy via GRPO and an adaptive curriculum over physical intents. Starting from Qwen3-VL-8B-Instruct, PhysEvolve achieves targeted gains across PhysBench, CausalPhys, and ContPhy without human intervention data, improving PhysBench Throwing by 8.8 points and ContPhy Counterfactual Removal and Goal-Pit by 7.4 and 24.4 points. These gains concentrate on interaction-sensitive and altered-world questions, demonstrating zero-shot transfer of causal principles to unseen complex dynamics (cloth, fluid, soft bodies) and real-world video.</p>
     </section>
 
+    <section class="motivation container" aria-labelledby="naive-title">
+      <div class="section-intro"><h2 id="naive-title">Why naive physical self-play fails</h2><p>Swapping the code interpreter of self-play for a physics simulator is not enough.</p></div>
+      <figure class="wide-figure"><img src="assets/naive-self-play.svg" width="1800" height="480" loading="lazy" alt="Naive self-play: a Proposer writes a world, the executor runs it once and derives forward, inverse and parameter questions, and a graded score rewards four wrong answers with 0.5 while exact accuracy is 0 of 4."></figure>
+      <div class="failure-grid">
+        <article class="failure"><span class="failure-index" aria-hidden="true">1</span><h3>One run cannot label an edit</h3><p>A single trajectory shows what happened, not what would happen with a body removed. Intervention questions can be neither built nor checked.</p></article>
+        <article class="failure"><span class="failure-index" aria-hidden="true">2</span><h3>Graded rewards pay wrong answers</h3><p>Proximity scores give partial credit to answers that are never exactly right, and the policy learns to exploit them, for example by answering with zero initial velocity.</p></article>
+      </div>
+      <div class="audit">
+        <h3>Naive self-play, 100 training rounds</h3>
+        <div class="audit-grid">
+          <div class="audit-cell"><span class="audit-task">Forward</span><dl><div><dt>Mean graded reward</dt><dd>0.37</dd></div><div><dt>Exact accuracy</dt><dd class="is-low">0.00%</dd></div></dl><p>No exact answer in 100 of 100 rounds</p></div>
+          <div class="audit-cell"><span class="audit-task">Inverse</span><dl><div><dt>Mean graded reward</dt><dd>0.66</dd></div><div><dt>Exact accuracy</dt><dd class="is-low">6.63%</dd></div></dl><p>No exact answer in 75 of 100 rounds</p></div>
+          <div class="audit-cell"><span class="audit-task">Parameter</span><dl><div><dt>Mean graded reward</dt><dd>0.79</dd></div><div><dt>Exact accuracy</dt><dd class="is-low">5.44%</dd></div></dl><p>No exact answer in 83 of 100 rounds</p></div>
+        </div>
+      </div>
+    </section>
+
     <section class="method container" aria-labelledby="method-title">
-      <h2 id="method-title">Method</h2>
+      <div class="section-intro"><h2 id="method-title">Method</h2><p>The policy explores; the fixed executor alone decides physical outcomes and correct answers.</p></div>
       <figure>
         <a class="method-link" href="assets/physevolve_framework_overview.svg" target="_blank" rel="noopener" aria-label="Open the full-resolution PhysEvolve method diagram"><img src="assets/physevolve_framework_overview.svg" width="1650" height="880" loading="lazy" alt="PhysEvolve framework: a shared model proposes worlds; a deterministic executor verifies them and simulates baseline and removal branches; exact solver feedback updates the policy and curriculum."></a>
-        <figcaption class="method-caption">A shared policy proposes executable worlds and solves simulation-authored tasks. The fixed executor alone determines physical outcomes and correct answers, while exact feedback updates the policy and curriculum.</figcaption>
       </figure>
+      <ol class="steps">
+        <li><span class="step-index">01</span><h3>Propose</h3><p>Conditioned on a sampled physical intent, the policy writes a PhysDSL world program and an evidence schema.</p></li>
+        <li><span class="step-index">02</span><h3>Execute and verify</h3><p>The MuJoCo executor validates and freezes the world, runs matched original and body-removed branches, and binds each question to one discrete answer.</p></li>
+        <li><span class="step-index">03</span><h3>Solve and evolve</h3><p>The same policy answers from the original video. Exact rewards update it with GRPO and steer the curriculum over physical intents.</p></li>
+      </ol>
+    </section>
+
+    <section class="worlds container" id="scenes" aria-labelledby="scenes-title">
+      <div class="section-intro"><h2 id="scenes-title">Reference worlds</h2><p>Three hand-written world programs from the paper, rendered from the exact simulated poses.</p></div>
+      <div class="video-grid">
+        <figure class="scene">
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/throwing-poster.jpg?v=20261027" aria-label="Throwing reference scene: colored balls deflected by obstacles"><source src="assets/throwing.mp4?v=20261027b" type="video/mp4">Your browser does not support embedded video. <a href="assets/throwing.mp4">Download the throwing video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/throwing.mp4">Open video</a></p></div>
+          <figcaption><h3>Throwing</h3><p>Ball trajectories through removable obstacles.</p></figcaption>
+        </figure>
+        <figure class="scene">
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/collision-poster.jpg?v=20261027" aria-label="Collision reference scene: a hinged striker transfers motion through multiple objects"><source src="assets/collision.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/collision.mp4">Download the collision video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/collision.mp4">Open video</a></p></div>
+          <figcaption><h3>Collision</h3><p>Motion transfer through a chain of contacts.</p></figcaption>
+        </figure>
+        <figure class="scene">
+          <div class="video-wrap"><video muted loop playsinline controls preload="metadata" poster="assets/motion-poster.jpg?v=20261027" aria-label="Motion reference scene: a ball rolls down a ramp and interacts with a slider and another ball"><source src="assets/motion.mp4?v=20261027" type="video/mp4">Your browser does not support embedded video. <a href="assets/motion.mp4">Download the motion video.</a></video><p class="video-error" hidden>Video unavailable. <a href="assets/motion.mp4">Open video</a></p></div>
+          <figcaption><h3>Motion</h3><p>Rolling, sliding, and friction-dependent motion.</p></figcaption>
+        </figure>
+      </div>
+      <p class="scene-note">Reference scenes · Original speed</p>
     </section>
 
     <!-- RESULTS:START -->
     <section class="results container" aria-labelledby="results-title">
-      <div class="section-intro"><h2 id="results-title">Results</h2><p>Targeted improvements in physical and counterfactual reasoning.</p></div>
+      <div class="section-intro"><h2 id="results-title">Results</h2><p>Qwen3-VL-8B-Instruct trained only on self-proposed rigid-body worlds, with no human intervention data.</p></div>
       <div class="chart-legend" aria-label="Chart legend"><span><i class="base-key"></i>Base</span><span><i class="ours-key"></i>PhysEvolve</span></div>
       <div class="results-grid">
         <figure class="result-panel">
@@ -81,16 +140,75 @@
         <figure class="result-panel">
           <figcaption><span class="benchmark-name">ContPhy</span><h3>Goal-Pit</h3><p class="result-gain">+24.44<span> pp</span></p></figcaption>
           <img src="assets/result-goal-pit.svg" width="320" height="155" loading="lazy" alt="ContPhy Goal-Pit: Base 20.00%, PhysEvolve 44.44%, an increase of 24.44 percentage points.">
-          <p class="result-sample">Accuracy (%) · n = 90</p>
+          <p class="result-sample">Accuracy (%) · n = 90 · Qwen3-VL-32B: 26.7</p>
         </figure>
       </div>
+
+      <div class="subsection" aria-labelledby="transfer-title">
+        <div class="subsection-head"><h3 id="transfer-title">Task-level transfer</h3><p>PhysEvolve minus each matched 8B comparison, in percentage points. Right of zero favors PhysEvolve.</p></div>
+        <div class="dp-legend" aria-hidden="true"><span><i class="dp-mark base"></i>vs Base</span><span><i class="dp-mark naive"></i>vs Naive self-play</span><span><i class="dp-mark nobranch"></i>vs w/o branch</span><span class="dp-n-key">n = questions</span></div>
+        <div class="dp" aria-hidden="true"><div class="dp-group"><p class="dp-group-name">ContPhy</p><div class="dp-row"><span class="dp-task">Counterfactual Removal</span><span class="dp-track"><i class="dp-mark base" style="--x:41.27%" title="vs Base: +7.38 pp"></i><i class="dp-mark naive" style="--x:44.00%" title="vs Naive: +8.20 pp"></i><i class="dp-mark nobranch" style="--x:44.00%" title="vs w/o branch: +8.20 pp"></i></span><span class="dp-n">122</span></div><div class="dp-row"><span class="dp-task">Goal-Pit</span><span class="dp-track"><i class="dp-mark base" style="--x:98.13%" title="vs Base: +24.44 pp"></i><i class="dp-mark naive" style="--x:79.60%" title="vs Naive: +18.88 pp"></i><i class="dp-mark nobranch" style="--x:94.43%" title="vs w/o branch: +23.33 pp"></i></span><span class="dp-n">90</span></div></div><div class="dp-group"><p class="dp-group-name">CausalPhys · Anticipation</p><div class="dp-row"><span class="dp-task">Collision Prediction</span><span class="dp-track"><i class="dp-mark base" style="--x:10.00%" title="vs Base: −2.00 pp"></i><i class="dp-mark naive" style="--x:20.00%" title="vs Naive: +1.00 pp"></i><i class="dp-mark nobranch" style="--x:6.67%" title="vs w/o branch: −3.00 pp"></i></span><span class="dp-n">300</span></div><div class="dp-row"><span class="dp-task">Fluid Flow</span><span class="dp-track"><i class="dp-mark base" style="--x:53.33%" title="vs Base: +11.00 pp"></i><i class="dp-mark naive" style="--x:10.00%" title="vs Naive: −2.00 pp"></i><i class="dp-mark nobranch" style="--x:93.33%" title="vs w/o branch: +23.00 pp"></i></span><span class="dp-n">200</span></div><div class="dp-row"><span class="dp-task">Intention Speculation</span><span class="dp-track"><i class="dp-mark base" style="--x:25.17%" title="vs Base: +2.55 pp"></i><i class="dp-mark naive" style="--x:3.07%" title="vs Naive: −4.08 pp"></i><i class="dp-mark nobranch" style="--x:37.07%" title="vs w/o branch: +6.12 pp"></i></span><span class="dp-n">196</span></div><div class="dp-row"><span class="dp-task">Deformation</span><span class="dp-track"><i class="dp-mark base" style="--x:18.33%" title="vs Base: +0.50 pp"></i><i class="dp-mark naive" style="--x:43.33%" title="vs Naive: +8.00 pp"></i><i class="dp-mark nobranch" style="--x:16.67%" title="vs w/o branch: 0.00 pp"></i></span><span class="dp-n">200</span></div></div><div class="dp-group"><p class="dp-group-name">CausalPhys · Intervention</p><div class="dp-row"><span class="dp-task">Action Substitution</span><span class="dp-track"><i class="dp-mark base" style="--x:46.97%" title="vs Base: +9.09 pp"></i><i class="dp-mark naive" style="--x:20.03%" title="vs Naive: +1.01 pp"></i><i class="dp-mark nobranch" style="--x:26.77%" title="vs w/o branch: +3.03 pp"></i></span><span class="dp-n">99</span></div><div class="dp-row"><span class="dp-task">Spatial Manipulation</span><span class="dp-track"><i class="dp-mark base" style="--x:23.27%" title="vs Base: +1.98 pp"></i><i class="dp-mark naive" style="--x:12.23%" title="vs Naive: −1.33 pp"></i><i class="dp-mark nobranch" style="--x:29.90%" title="vs w/o branch: +3.97 pp"></i></span><span class="dp-n">151</span></div><div class="dp-row"><span class="dp-task">Temporal Shifting</span><span class="dp-track"><i class="dp-mark base" style="--x:25.63%" title="vs Base: +2.69 pp"></i><i class="dp-mark naive" style="--x:7.73%" title="vs Naive: −2.68 pp"></i><i class="dp-mark nobranch" style="--x:39.03%" title="vs w/o branch: +6.71 pp"></i></span><span class="dp-n">149</span></div><div class="dp-row"><span class="dp-task">Viewpoint Transformation</span><span class="dp-track"><i class="dp-mark base" style="--x:10.90%" title="vs Base: −1.73 pp"></i><i class="dp-mark naive" style="--x:16.67%" title="vs Naive: 0.00 pp"></i><i class="dp-mark nobranch" style="--x:16.67%" title="vs w/o branch: 0.00 pp"></i></span><span class="dp-n">174</span></div></div><div class="dp-row dp-axis" aria-hidden="true"><span></span><span class="dp-ticks"><span style="--x:0.00%">−5</span><span style="--x:16.67%">0</span><span style="--x:33.33%">5</span><span style="--x:50.00%">10</span><span style="--x:66.67%">15</span><span style="--x:83.33%">20</span><span style="--x:100.00%">25</span></span><span></span></div></div><table class="sr-only"><caption>Accuracy difference in percentage points, PhysEvolve minus each comparison.</caption><thead><tr><th scope="col">Task</th><th scope="col">n</th><th scope="col">vs Base</th><th scope="col">vs Naive</th><th scope="col">vs w/o branch</th></tr></thead><tbody><tr><th scope="row">ContPhy: Counterfactual Removal</th><td>122</td><td>+7.38</td><td>+8.20</td><td>+8.20</td></tr><tr><th scope="row">ContPhy: Goal-Pit</th><td>90</td><td>+24.44</td><td>+18.88</td><td>+23.33</td></tr><tr><th scope="row">CausalPhys · Anticipation: Collision Prediction</th><td>300</td><td>−2.00</td><td>+1.00</td><td>−3.00</td></tr><tr><th scope="row">CausalPhys · Anticipation: Fluid Flow</th><td>200</td><td>+11.00</td><td>−2.00</td><td>+23.00</td></tr><tr><th scope="row">CausalPhys · Anticipation: Intention Speculation</th><td>196</td><td>+2.55</td><td>−4.08</td><td>+6.12</td></tr><tr><th scope="row">CausalPhys · Anticipation: Deformation</th><td>200</td><td>+0.50</td><td>+8.00</td><td>0.00</td></tr><tr><th scope="row">CausalPhys · Intervention: Action Substitution</th><td>99</td><td>+9.09</td><td>+1.01</td><td>+3.03</td></tr><tr><th scope="row">CausalPhys · Intervention: Spatial Manipulation</th><td>151</td><td>+1.98</td><td>−1.33</td><td>+3.97</td></tr><tr><th scope="row">CausalPhys · Intervention: Temporal Shifting</th><td>149</td><td>+2.69</td><td>−2.68</td><td>+6.71</td></tr><tr><th scope="row">CausalPhys · Intervention: Viewpoint Transformation</th><td>174</td><td>−1.73</td><td>0.00</td><td>0.00</td></tr></tbody></table>
+      </div>
+
+      <div class="subsection" aria-labelledby="ablation-title">
+        <div class="subsection-head"><h3 id="ablation-title">Ablations</h3><p>Both components are necessary.</p></div>
+        <div class="ablation-grid">
+          <article class="ablation">
+            <h4>Without branch simulation</h4>
+            <p>No edited runs, so no counterfactual or inverse questions. Both scores fall back to the base model's level.</p>
+            <div class="metric"><p class="metric-name"><span>ContPhy Goal-Pit</span><span class="metric-drop">−23.33</span></p>
+              <div class="bar"><span>PhysEvolve</span><span class="bar-track"><span class="bar-fill" style="--v:44.44%"></span></span><span class="bar-value">44.44</span></div>
+              <div class="bar is-ablated"><span>w/o branch</span><span class="bar-track"><span class="bar-fill" style="--v:21.11%"></span></span><span class="bar-value">21.11</span></div></div>
+            <div class="metric"><p class="metric-name"><span>ContPhy Counterfactual Removal</span><span class="metric-drop">−8.20</span></p>
+              <div class="bar"><span>PhysEvolve</span><span class="bar-track"><span class="bar-fill" style="--v:51.64%"></span></span><span class="bar-value">51.64</span></div>
+              <div class="bar is-ablated"><span>w/o branch</span><span class="bar-track"><span class="bar-fill" style="--v:43.44%"></span></span><span class="bar-value">43.44</span></div></div>
+          </article>
+          <article class="ablation">
+            <h4>Without Proposer updates</h4>
+            <p>The shared policy learns only from Solver rollouts. It over-adapts to a degenerate stream of worlds and collapses.</p>
+            <div class="metric"><p class="metric-name"><span>CausalPhys accuracy</span><span class="metric-drop">−39.48</span></p>
+              <div class="bar"><span>PhysEvolve</span><span class="bar-track"><span class="bar-fill" style="--v:54.50%"></span></span><span class="bar-value">54.50</span></div>
+              <div class="bar is-ablated"><span>Solver only</span><span class="bar-track"><span class="bar-fill" style="--v:15.01%"></span></span><span class="bar-value">15.01</span></div></div>
+            <div class="metric"><p class="metric-name"><span>CausalPhys answer parse rate</span><span class="metric-drop">−71.77</span></p>
+              <div class="bar"><span>PhysEvolve</span><span class="bar-track"><span class="bar-fill" style="--v:97.84%"></span></span><span class="bar-value">97.84</span></div>
+              <div class="bar is-ablated"><span>Solver only</span><span class="bar-track"><span class="bar-fill" style="--v:26.07%"></span></span><span class="bar-value">26.07</span></div></div>
+          </article>
+        </div>
+      </div>
+
       <div class="overall-results">
         <h3>Overall benchmark accuracy</h3>
         <div class="table-scroll"><table><caption class="sr-only">Overall accuracy in percent. Improvements are percentage points relative to Base.</caption><thead><tr><th scope="col">Benchmark</th><th scope="col">Base</th><th scope="col">PhysEvolve</th><th scope="col">Δ (pp)</th></tr></thead><tbody><tr><th scope="row">PhysBench</th><td>52.92</td><td class="ours">53.47</td><td class="delta">+0.55</td></tr><tr><th scope="row">CausalPhys</th><td>53.94</td><td class="ours">54.50</td><td class="delta">+0.56</td></tr><tr><th scope="row">ContPhy</th><td>37.08</td><td class="ours">39.54</td><td class="delta">+2.46</td></tr></tbody></table></div>
       </div>
-      <p class="results-note">Matched Qwen3-VL-8B-Instruct comparison at step 100; one training run per configuration. The charts show selected task subsets; the table reports overall accuracy. <a href="assets/results.json">Data</a></p>
+      <p class="results-note">Matched Qwen3-VL-8B-Instruct comparison at step 100; one training run per configuration. Gains concentrate on interaction-sensitive and altered-world questions; overall accuracy moves less. Full tables are in the paper. <a href="assets/results.json">Data</a></p>
     </section>
     <!-- RESULTS:END -->
+
+    <section class="examples container" aria-labelledby="examples-title">
+      <div class="section-intro"><h2 id="examples-title">Transfer to unseen soft bodies</h2><p>Held-out ContPhy scenes, absent from the rigid-body training worlds. Examples from the paper's appendix.</p></div>
+      <article class="example">
+        <figure class="example-media"><div class="example-frames"><img src="assets/examples/contphy-cf-removal-0.jpg" width="640" height="360" loading="lazy" alt="ContPhy soft-body scene, first input frame"><img src="assets/examples/contphy-cf-removal-1.jpg" width="640" height="360" loading="lazy" alt="Middle input frame"><img src="assets/examples/contphy-cf-removal-2.jpg" width="640" height="360" loading="lazy" alt="Last input frame"></div><figcaption>Benchmark input, unedited · 3 of 10 frames</figcaption></figure>
+        <div class="example-body">
+          <p class="example-meta">ContPhy · Counterfactual Removal · soft:00086</p>
+          <p class="example-q">If we removed the black floating wall and other balls, which pit would the purple ball drop into?</p>
+          <ol class="example-options"><li><span class="opt-letter">A</span>The left pit</li><li class="is-gold"><span class="opt-letter">B</span>The right pit</li><li><span class="opt-letter">C</span>None of the above</li></ol>
+          <ul class="example-answers" aria-label="Model answers; correct answer B">
+            <li class="answer">Base <b>A</b></li><li class="answer">Naive <b>A</b></li><li class="answer">w/o branch <b>A</b></li><li class="answer is-correct">PhysEvolve <b>B</b></li>
+          </ul>
+        </div>
+      </article>
+      <article class="example">
+        <figure class="example-media"><div class="example-frames"><img src="assets/examples/contphy-goal-pit-0.jpg" width="640" height="360" loading="lazy" alt="ContPhy soft-body scene, first input frame"><img src="assets/examples/contphy-goal-pit-1.jpg" width="640" height="360" loading="lazy" alt="Middle input frame"><img src="assets/examples/contphy-goal-pit-2.jpg" width="640" height="360" loading="lazy" alt="Last input frame"></div><figcaption>Benchmark input, unedited · 3 of 10 frames</figcaption></figure>
+        <div class="example-body">
+          <p class="example-meta">ContPhy · Goal-Pit · soft:00038</p>
+          <p class="example-q">What can we do to make the brown ball drop into the right pit?</p>
+          <ol class="example-options"><li><span class="opt-letter">A</span>Remove the pink floating wall and other balls</li><li><span class="opt-letter">B</span>Remove the yellow floating wall and other balls</li><li class="is-gold"><span class="opt-letter">C</span>None of the above</li></ol>
+          <ul class="example-answers" aria-label="Model answers; correct answer C">
+            <li class="answer">Base <b>A, B</b></li><li class="answer">Naive <b>A, B</b></li><li class="answer">w/o branch <b>A</b></li><li class="answer is-correct">PhysEvolve <b>C</b></li>
+          </ul>
+        </div>
+      </article>
+    </section>
 
     <section class="citation text-container" aria-labelledby="bibtex-title">
       <div class="citation-heading"><h2 id="bibtex-title">BibTeX</h2><button class="copy-button" type="button" id="copy-bibtex">Copy</button></div>
